@@ -67,5 +67,87 @@ namespace BandTracker.Tests
           //Assert
           Assert.AreEqual(testId, result);
         }
+
+        // [TestMethod]
+        // public void AddVenue_AddsVenuetoBands_VenuesList()
+        // {
+        //   //Arrange
+        //   Band testBand = new Band("Linkin Park");
+        //   testBand.Save();
+        //
+        //   Venue testVenue = new Venue("The Big Hall");
+        //   testVenue.Save();
+        //
+        //   //Act
+        //   testBand.AddVenue(testVenue);
+        //
+        //   List<Venue> result = testBand.GetVenues();
+        //   //CALL GetVenues()
+        //   List<Venue> testList = new List<Venue>{testVenue};
+        //
+        //   //Assert
+        //   CollectionAssert.AreEqual(testList, result);
+        // }
+
+        // [TestMethod]
+        // public void GetVenues_ReturnsAllBandsVenues_VenuesList()
+        // {
+        //   //Arrange
+        //   Band testBand = new Band("Linkin Park");
+        //   testBand.Save();
+        //
+        //   Venue testVenue1 = new Venue("Key Arena");
+        //   testVenue1.Save();
+        //
+        //   Venue testVenue2 = new Venue("Kingdome");
+        //   testVenue2.Save();
+        //
+        //   //Act
+        //   testBand.AddVenue(testVenue1);
+        //   //CALL AddVenue()
+        //   List<Venue> result = testBand.GetVenues();
+        //   List<Venue> testList = new List<Venue> {testVenue1};
+        //
+        //   //Assert
+        //   CollectionAssert.AreEqual(testList, result);
+        // }
+
+        // [TestMethod]
+        // public void Delete_DeletesBandAssociationsFromDatabase_BandList()
+        // {
+        //   //Arrange
+        //   Venue testVenue = new Venue("Key Arena");
+        //   testVenue.Save();
+        //
+        //   string testName = "AlienAntFarm";
+        //   Band testBand = new Band(testName);
+        //   testBand.Save();
+        //
+        //   //Act
+        //   testBand.AddVenue(testVenue);
+        //   testBand.Delete();
+        //   //CALL Delete()
+        //
+        //   List<Band> testVenueBands = testVenue.GetBands();
+        //   List<Band> testBandVenues = new List<Band> {};
+        //
+        //   //Assert
+        //   CollectionAssert.AreEqual(testBandVenues, testVenueBands);
+        // }
+
+        [TestMethod]
+        public void Find_FindsBandInDatabase_Student()
+        {
+          //Arrange
+          Band testBand = new Band("Six Inch Nails");
+          testBand.Save();
+
+          //Act
+          Band result = Band.Find(testBand.GetId());
+
+          //Assert
+          Assert.AreEqual(testBand, result);
+        }
+
     }
 }
