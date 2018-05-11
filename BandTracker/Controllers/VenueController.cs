@@ -40,7 +40,7 @@ namespace BandTracker.Controllers
     }
 
     [HttpGet("/venues/delete")]
-    public ActionResult DeleteCourse()
+    public ActionResult DeleteVenue()
     {
         List<Venue> allVenues = Venue.GetAll();
         return View(allVenues);
@@ -56,7 +56,7 @@ namespace BandTracker.Controllers
     }
 
     [HttpGet("/venues/update")]
-    public ActionResult UpdateCourse()
+    public ActionResult UpdateVenue()
     {
         List<Venue> allVenues = Venue.GetAll();
         return View(allVenues);
