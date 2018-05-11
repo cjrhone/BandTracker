@@ -33,5 +33,20 @@ namespace BandTracker.Tests
 
           Assert.AreEqual(firstBand, secondBand);
         }
+
+        [TestMethod]
+        public void Save_SavesToDatabase_BandList()
+        {
+          Band testBand = new Band("Marmadook");
+
+          testBand.Save();
+          List<Band> result = Band.GetAll();
+          List<Band> testList = new List<Band>{testBand};
+          Console.WriteLine("result " + result.Count);
+          Console.WriteLine("testList " + testList.Count);
+
+
+          CollectionAssert.AreEqual(testList, result);
+        }
     }
 }
