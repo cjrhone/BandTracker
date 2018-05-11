@@ -12,7 +12,7 @@ namespace BandTracker.Tests
       public void Dispose()
       {
         Band.DeleteAll();
-        // Venue.DeleteAll();
+        Venue.DeleteAll();
       }
 
         [TestMethod]
@@ -81,26 +81,27 @@ namespace BandTracker.Tests
           //Assert
           Assert.AreEqual(testBand, result);
         }
-        // [TestMethod]
-        // public void AddVenue_AddsVenuetoBands_VenuesList()
-        // {
-        //   //Arrange
-        //   Band testBand = new Band("Linkin Park");
-        //   testBand.Save();
-        //
-        //   Venue testVenue = new Venue("The Big Hall");
-        //   testVenue.Save();
-        //
-        //   //Act
-        //   testBand.AddVenue(testVenue);
-        //
-        //   List<Venue> result = testBand.GetVenues();
-        //   //CALL GetVenues()
-        //   List<Venue> testList = new List<Venue>{testVenue};
-        //
-        //   //Assert
-        //   CollectionAssert.AreEqual(testList, result);
-        // }
+
+        [TestMethod]
+        public void AddVenue_AddsVenuetoBands_VenuesList()
+        {
+          //Arrange
+          Band testBand = new Band("Linkin Park");
+          testBand.Save();
+
+          Venue testVenue = new Venue("The Big Hall");
+          testVenue.Save();
+
+          //Act
+          testBand.AddVenue(testVenue);
+
+          List<Venue> result = testBand.GetVenues();
+          //CALL GetVenues()
+          List<Venue> testList = new List<Venue>{testVenue};
+
+          //Assert
+          CollectionAssert.AreEqual(testList, result);
+        }
 
         // [TestMethod]
         // public void GetVenues_ReturnsAllBandsVenues_VenuesList()

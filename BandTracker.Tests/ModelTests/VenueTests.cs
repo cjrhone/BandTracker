@@ -12,7 +12,7 @@ namespace BandTracker.Tests
       public void Dispose()
       {
         Venue.DeleteAll();
-        // Band.DeleteAll();
+        Band.DeleteAll();
       }
 
         [TestMethod]
@@ -66,6 +66,42 @@ namespace BandTracker.Tests
 
           //Assert
           Assert.AreEqual(testId, result);
+        }
+
+        [TestMethod]
+        public void Find_FindsVenueInDatabase_Venue()
+        {
+          //Arrange
+          Venue testVenue = new Venue("Tacoma Dome");
+          testVenue.Save();
+
+          //Act
+          Venue result = Venue.Find(testVenue.GetId());
+
+          //Assert
+          Assert.AreEqual(testVenue, result);
+        }
+
+        [TestMethod]
+        public void Delete_DeletesVenueAssociationsFromDatabase_VenueList()
+        {
+          //Arrange
+          Band testBand = new Band("Linkin Park");
+          testBand.Save();
+
+          string testName = "Word";
+          Venue testVenue = new Venue(testName);
+          testVenue.Save();
+
+          //Act
+          testVenue.AddBand(testBand);
+          testVenue.Delete();
+
+          List<Venue> resultBandVenues = testBand.GetVenues();
+          List<Venue> testBandVenues = new List<Venue> {};
+
+          //Assert
+          CollectionAssert.AreEqual(testBandVenues, resultBandVenues);
         }
     }
 }
