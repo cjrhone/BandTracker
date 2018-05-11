@@ -103,5 +103,7 @@ namespace BandTracker.Tests
           //Assert
           CollectionAssert.AreEqual(testBandVenues, resultBandVenues);
         }
+
+
     }
 }

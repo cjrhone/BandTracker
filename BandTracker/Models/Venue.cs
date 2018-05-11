@@ -50,6 +50,41 @@ namespace BandTracker.Models
 
     }
 
+    public List<Band> GetBands()
+    {
+        MySqlConnection conn = DB.Connection();
+        conn.Open();
+        var cmd = conn.CreateCommand() as MySqlCommand;
+        cmd.CommandText = @"SELECT bands.* FROM venues
+        JOIN venues_bands ON (venues.id = venues_bands.venue_id)
+        JOIN bands ON (venues_bands.band_id = bands.id)
+        WHERE venues.id = @VenueId;";
+        // @"SELECT band_id FROM venues_bands WHERE venue_id = @VenueId;";
+
+        MySqlParameter venueIdParameter = new MySqlParameter();
+        venueIdParameter.ParameterName = "@VenueId";
+        venueIdParameter.Value = _id;
+        cmd.Parameters.Add(venueIdParameter);
+
+        MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
+        List<Band> bands = new List<Band>{};
+
+        while(rdr.Read())
+        {
+          int bandId = rdr.GetInt32(0);
+          string bandName = rdr.GetString(1);
+          Band newBand = new Band(bandName, bandId);
+          bands.Add(newBand);
+        }
+
+        conn.Close();
+        if (conn != null)
+        {
+          conn.Dispose();
+        }
+        return bands;
+    }
+
     public void Delete()
     {
       MySqlConnection conn = DB.Connection();
