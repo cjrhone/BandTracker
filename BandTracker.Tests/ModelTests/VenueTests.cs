@@ -23,5 +23,15 @@ namespace BandTracker.Tests
 
           Assert.AreEqual(0, result);
         }
+
+        [TestMethod]
+        public void Equals_ReturnsTrueIfNamesAreTheSame_Venue()
+        {
+          Venue firstVenue = new Venue("Key Arena");
+          Venue secondVenue = new Venue("Key Arena");
+
+
+          Assert.AreEqual(firstVenue, secondVenue);
+        }
     }
 }
