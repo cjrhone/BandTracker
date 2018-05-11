@@ -68,6 +68,19 @@ namespace BandTracker.Tests
           Assert.AreEqual(testId, result);
         }
 
+        [TestMethod]
+        public void Find_FindsBandInDatabase_Band()
+        {
+          //Arrange
+          Band testBand = new Band("Six Inch Nails");
+          testBand.Save();
+
+          //Act
+          Band result = Band.Find(testBand.GetId());
+
+          //Assert
+          Assert.AreEqual(testBand, result);
+        }
         // [TestMethod]
         // public void AddVenue_AddsVenuetoBands_VenuesList()
         // {
@@ -135,19 +148,6 @@ namespace BandTracker.Tests
         //   CollectionAssert.AreEqual(testBandVenues, testVenueBands);
         // }
 
-        [TestMethod]
-        public void Find_FindsBandInDatabase_Student()
-        {
-          //Arrange
-          Band testBand = new Band("Six Inch Nails");
-          testBand.Save();
-
-          //Act
-          Band result = Band.Find(testBand.GetId());
-
-          //Assert
-          Assert.AreEqual(testBand, result);
-        }
 
     }
 }
