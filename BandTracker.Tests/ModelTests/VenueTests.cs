@@ -48,5 +48,24 @@ namespace BandTracker.Tests
 
           CollectionAssert.AreEqual(testList, result);
         }
+
+        [TestMethod]
+        public void Save_AssignsVenueIdToObject_Id()
+        {
+          //Arrange
+          Venue testVenue = new Venue("Key Arena");
+          Venue testVenue2 = new Venue("Kingdome");
+
+          //Act
+          testVenue.Save();
+          testVenue2.Save();
+          Venue savedVenue = Venue.GetAll()[1];
+
+          int result = savedVenue.GetId();
+          int testId = testVenue2.GetId();
+
+          //Assert
+          Assert.AreEqual(testId, result);
+        }
     }
 }
