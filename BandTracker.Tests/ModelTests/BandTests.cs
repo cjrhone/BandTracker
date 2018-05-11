@@ -23,5 +23,15 @@ namespace BandTracker.Tests
 
           Assert.AreEqual(0, result);
         }
+
+        [TestMethod]
+        public void Equals_ReturnsTrueIfNamesAreTheSame_Band()
+        {
+          Band firstBand = new Band("RipShredders");
+          Band secondBand = new Band("RipShredders");
+
+
+          Assert.AreEqual(firstBand, secondBand);
+        }
     }
 }
