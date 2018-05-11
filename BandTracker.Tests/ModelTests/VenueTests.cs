@@ -33,5 +33,20 @@ namespace BandTracker.Tests
 
           Assert.AreEqual(firstVenue, secondVenue);
         }
+
+        [TestMethod]
+        public void Save_SavesToDatabase_VenueList()
+        {
+          Venue testVenue = new Venue("Tacoma Dome");
+
+          testVenue.Save();
+          List<Venue> result = Venue.GetAll();
+          List<Venue> testList = new List<Venue>{testVenue};
+          Console.WriteLine("result " + result.Count);
+          Console.WriteLine("testList " + testList.Count);
+
+
+          CollectionAssert.AreEqual(testList, result);
+        }
     }
 }

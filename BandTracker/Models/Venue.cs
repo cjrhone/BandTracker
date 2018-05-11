@@ -86,6 +86,26 @@ namespace BandTracker.Models
       }
     }
 
+    public void Save()
+    {
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
 
+      var cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"INSERT INTO venues (name) VALUES (@name);";
+
+
+      cmd.Parameters.Add(new MySqlParameter("@name", _name));
+
+
+      cmd.ExecuteNonQuery();
+      _id = (int) cmd.LastInsertedId;
+
+      conn.Close();
+      if (conn != null)
+      {
+          conn.Dispose();
+      }
+    }
   }
 }
