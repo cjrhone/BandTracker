@@ -48,5 +48,24 @@ namespace BandTracker.Tests
 
           CollectionAssert.AreEqual(testList, result);
         }
+
+        [TestMethod]
+        public void Save_AssignsBandIdToObject_Id()
+        {
+          //Arrange
+          Band testBand = new Band("Jokers");
+          Band testBand2 = new Band("Linkin Park");
+
+          //Act
+          testBand.Save();
+          testBand2.Save();
+          Band savedBand = Band.GetAll()[1];
+
+          int result = savedBand.GetId();
+          int testId = testBand2.GetId();
+
+          //Assert
+          Assert.AreEqual(testId, result);
+        }
     }
 }
